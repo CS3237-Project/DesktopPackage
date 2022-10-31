@@ -20,12 +20,12 @@ do
         size=${#payload} 
         if [[ ${size} -gt 30 ]]
         then 
-            echo ${payload} > base64.txt
             echo "Rx MQTT: bad_posture"
-            exit
+            echo ${payload} > base64.txt
+            python3 badPosture.py $payload
             if [ $is_alert_open == "false" ]
             then       
-                java -jar $dir/$jar_name $payload &
+                java -jar $dir/$jar_name &
                 echo $! > MyApp.pid
                 is_alert_open=true
             fi
