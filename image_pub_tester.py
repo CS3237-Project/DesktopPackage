@@ -21,14 +21,13 @@ def setup(hostname):
     imageFile = open('./test.jpg', 'rb')
     encodedPayload = base64.b64encode(imageFile.read())
     client.publish('image', encodedPayload)
-    # publish.single('image', encodedPayload, hostname=host_ip)
     print('published image')
     client.loop_forever()
     return client
 
 def main():
     setup(host_ip)
-    
+
     while True:
         pass
 

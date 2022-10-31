@@ -4,7 +4,7 @@
 # On each message received, you can execute whatever you want.
 
 ##directory where jar file is located    
-dir=/Users/charismak/Downloads/finespine-desktop/build/libs/
+dir=/Users/charismak/Downloads/CS3237/DesktopPackage
 
 ##jar file name
 jar_name=finespine.jar
