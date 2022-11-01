@@ -4,7 +4,7 @@
 # On each message received, you can execute whatever you want.
 
 ##directory where jar file is located    
-dir=/Users/charismak/Downloads/CS3237/DesktopPackage
+dir=./
 
 ##jar file name
 jar_name=finespine.jar
@@ -18,6 +18,11 @@ do
     do
         # Here is the callback to execute whenever you receive a message:
         size=${#payload} 
+        if [ $is_alert_open == "true" ]
+        then
+            kill -TERM $(cat MyApp.pid)
+            is_alert_open=false
+        fi
         if [[ ${size} -gt 30 ]]
         then 
             echo "Rx MQTT: bad_posture"
@@ -31,11 +36,6 @@ do
             fi
         else
             echo "Rx MQTT: ${payload}" 
-            if [ $is_alert_open == "true" ]
-            then
-                kill -TERM $(cat MyApp.pid)
-                is_alert_open=false
-            fi
         fi
     done
     sleep 10  # Wait 10 seconds until reconnection
